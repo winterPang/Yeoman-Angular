@@ -1,0 +1,28 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <span class="glyphicon glyphicon-eye-open"></span>
+    Watchlists
+    <!-- 再单击是调用showModel()-->
+    <button type="button" class="btn btn-success btn-xs pull-right" ng-click="showModal()">
+      <span class="glyphicon glyphicon-plus"></span>
+    </button>
+  </div>
+  <div class="panel-body">
+    <!--如果没有监视列表，就显示帮助文本-->
+    <div ng-if="!watchlists.length" class="text-center">
+      Use <span class="glyphicon glyphicon-plus"></span> to create a list
+    </div>
+    <div class="list-group">
+      <!-- 重复监视列表中的每个列表，并创建连接-->
+      <a class="list-group-item"
+         ng-class="{active:currentList == list.id}"
+         ng-repeat="list in watchlists track by $index"
+         ng-click="gotoList(list.id)">
+        {{list.name}}
+        <!-- 调用deleteList()处理器删除该列表-->
+        <button type="button" class="close" ng-click="deleteList(list)">&times;
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
